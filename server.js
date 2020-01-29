@@ -1,12 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+let todoController = require('./controllers/todoController');
 
 const app = express();
 
-
+// set up template engine
 app.set('view engine','ejs');
 
-app.use('/assets',express.static('assets'));
+
+//static files
+//app.use('/assets',express.static('assets'));
+app.use(express.static('./public'));
+
+// fire controllers
+todoController(app);
+
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.get('/',function(req,res){
