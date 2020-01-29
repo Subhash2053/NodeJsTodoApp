@@ -1,0 +1,7 @@
+body{
+    background-color:coral;
+}
+
+form{width: 400px; max-width: 100%; padding: 20px; margin: 20px auto;}
+input{display: block; margin: 10px 0; padding: 10px; width: 100%;}
+input[type='submit']{width: auto;}
