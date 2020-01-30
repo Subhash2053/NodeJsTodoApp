@@ -22,6 +22,8 @@ let Todo = mongoose.model('Todo',todoSchema);
 module.exports = function (app){
 
     app.get('/todo',function(req,res){
+
+        
         // get data from monogodb and pass to view
          Todo.find({},function(err,data){
             if(err) throw err;
@@ -37,7 +39,7 @@ module.exports = function (app){
 
         //console.log(req.body);
          // get data from the view and add it to mongodb
-         let newTodo = new Todo({item:req.body.item}).save(function(err,data){
+         let newTodo = new Todo({item:req.body.item.trim()}).save(function(err,data){
              if(err) return console.error(err); 
             
              res.json(data);
@@ -49,9 +51,9 @@ module.exports = function (app){
     });
 
     app.delete('/todo/:item',function(req,res){
-
+        //console.log(req.params.item.trim());
 // delete requested item from mongodb
-Todo.find({item:req.params.item.replace(/\s/g, '')}).deleteOne(function(err,data){
+Todo.find({item:req.params.item.trim()}).deleteOne(function(err,data){
     if(err) throw err;
             
     res.json(data);

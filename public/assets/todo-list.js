@@ -20,8 +20,8 @@ $(document).ready(function(){
   });
 
   $('li').on('click', function(){
-      var item = $(this).text().replace(/\s/g, '');
-      console.log(item);
+      var item = $(this).text().trim();
+     // console.log(item);
       $.ajax({
         type: 'DELETE',
         url: '/todo/' + item,
